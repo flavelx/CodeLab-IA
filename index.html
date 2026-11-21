@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeLab IA — plataforma de estudos de programação com apoio de inteligência artificial.">
+  <meta name="theme-color" content="#2563eb">
+  <title>CodeLab IA | Plataforma de Estudos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+            <line x1="14" y1="4" x2="10" y2="20"></line>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-eyebrow">Ambiente de aprendizado</span>
+          <h1>CodeLab IA</h1>
+          <p>Estudos de programação com inteligência artificial</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <div class="header-meta" aria-hidden="true">
+          <span class="header-pill">Tutor · Exercícios · Quiz</span>
+        </div>
+        <div class="score-box" title="Pontuação acumulada nos exercícios e quizzes">
+          <div class="score-meta">
+            <span class="score-label">Pontuação total</span>
+            <small>Acumulada em exercícios e quizzes</small>
+          </div>
+          <div class="score-value-wrap">
+            <strong id="pontuacao" class="score-value">0</strong>
+            <span>pts</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="tabs" aria-label="Navegação principal">
+      <div class="sidebar-head">
+        <span>Menu principal</span>
+      </div>
+
+      <button type="button" class="tab active" data-tab="chat">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-4-.9L3 21l1.9-4.5A8.4 8.4 0 0 1 4 11.5a8.5 8.5 0 0 1 8.5-8.5h.5a8.5 8.5 0 0 1 8 8v.5z"></path>
+        </svg>
+        <span>Tutor IA</span>
+      </button>
+
+      <button type="button" class="tab" data-tab="exercicios">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        <span>Exercícios</span>
+      </button>
+
+      <button type="button" class="tab" data-tab="quiz">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span>Quiz</span>
+      </button>
+
+      <button type="button" class="tab" data-tab="historico">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>Histórico</span>
+      </button>
+
+      <button type="button" class="tab" data-tab="geral">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Visão geral</span>
+      </button>
+
+      <div class="sidebar-head sidebar-head-secondary">
+        <span>Suporte</span>
+      </div>
+
+      <button type="button" class="tab" data-tab="guia">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+        </svg>
+        <span>Guia rápido</span>
+      </button>
+
+      <button type="button" class="tab" data-tab="sobre">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <span>Sobre</span>
+      </button>
+    </aside>
+
+    <section class="settings" aria-label="Perfil de estudo">
+      <div class="settings-card">
+        <div class="settings-top">
+          <div class="settings-title">
+            <span class="settings-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+              </svg>
+            </span>
+            <div>
+              <h2>Perfil de estudo</h2>
+              <p>Defina suas preferências para personalizar o tutor, os exercícios e os quizzes.</p>
+            </div>
+          </div>
+          <span class="settings-badge">Personalização ativa</span>
+        </div>
+
+        <div class="settings-grid">
+          <div class="field">
+            <label for="linguagem">Linguagem</label>
+            <div class="input-wrap">
+              <select id="linguagem">
+                <optgroup label="Mais populares">
+                  <option>JavaScript</option>
+                  <option>TypeScript</option>
+                  <option>Python</option>
+                  <option>Java</option>
+                  <option>C</option>
+                  <option>C++</option>
+                  <option>C#</option>
+                  <option>Go</option>
+                  <option>Rust</option>
+                  <option>Kotlin</option>
+                  <option>Swift</option>
+                  <option>PHP</option>
+                  <option>Ruby</option>
+                </optgroup>
+                <optgroup label="Web, mobile e scripts">
+                  <option>Dart</option>
+                  <option>HTML/CSS</option>
+                  <option>Lua</option>
+                  <option>Objective-C</option>
+                  <option>Groovy</option>
+                  <option>Perl</option>
+                  <option>Shell/Bash</option>
+                  <option>PowerShell</option>
+                  <option>CoffeeScript</option>
+                  <option>ActionScript</option>
+                  <option>Solidity</option>
+                  <option>SQL</option>
+                </optgroup>
+                <optgroup label="Dados e computação científica">
+                  <option>R</option>
+                  <option>MATLAB</option>
+                  <option>Julia</option>
+                  <option>Scala</option>
+                  <option>WebAssembly</option>
+                </optgroup>
+                <optgroup label="Funcionais">
+                  <option>Haskell</option>
+                  <option>Elixir</option>
+                  <option>Erlang</option>
+                  <option>Clojure</option>
+                  <option>F#</option>
+                  <option>OCaml</option>
+                  <option>Scheme</option>
+                  <option>Lisp</option>
+                  <option>Prolog</option>
+                  <option>Smalltalk</option>
+                </optgroup>
+                <optgroup label="Sistemas e baixo nível">
+                  <option>Assembly</option>
+                  <option>Zig</option>
+                  <option>Nim</option>
+                  <option>Crystal</option>
+                  <option>Ada</option>
+                  <option>Fortran</option>
+                  <option>COBOL</option>
+                  <option>Pascal</option>
+                  <option>Delphi</option>
+                  <option>Verilog</option>
+                  <option>VHDL</option>
+                </optgroup>
+                <optgroup label="Outras">
+                  <option>VB.NET</option>
+                  <option>Visual Basic</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="nivel">Nível de conhecimento</label>
+            <div class="input-wrap">
+              <select id="nivel">
+                <option>Iniciante</option>
+                <option>Intermediário</option>
+                <option>Avançado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field field-grow">
+            <label for="tema">Tema de estudo</label>
+            <div class="input-wrap">
+              <input type="text" id="tema" placeholder="Ex.: variáveis, funções, arrays, APIs, orientação a objetos..." maxlength="120" autocomplete="off">
+            </div>
+            <small class="field-hint">Usado para orientar o tutor, os exercícios e o quiz.</small>
+          </div>
+
+          <div class="field field-action">
+            <label class="label-spacer" aria-hidden="true">&nbsp;</label>
+            <button type="button" id="salvar-config" class="btn btn-primary btn-save">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              Salvar preferências
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="panels">
+      <section id="panel-chat" class="panel active">
+        <div class="panel-head">
+          <div>
+            <h2>Tutor IA</h2>
+            <p>Converse com o tutor para esclarecer dúvidas de programação ou qualquer outro assunto.</p>
+          </div>
+          <div class="panel-actions">
+            <button type="button" id="limpar-chat" class="btn btn-ghost btn-small">Limpar conversa</button>
+          </div>
+        </div>
+        <div class="panel-body chat-layout">
+          <div id="mensagens" class="mensagens" aria-live="polite" aria-label="Conversa com o tutor">
+            <div class="msg bot">Olá! Sou seu tutor de estudos. Pergunte o que quiser — programação ou outros assuntos. Para respostas melhores, conte o que você já tentou ou qual é seu objetivo.</div>
+          </div>
+          <form id="form-chat" class="composer">
+            <label for="pergunta" class="visually-hidden">Sua pergunta</label>
+            <input type="text" id="pergunta" placeholder="Digite sua dúvida aqui..." maxlength="2000" autocomplete="off">
+            <button type="submit" id="enviar-chat" class="btn btn-primary">Enviar</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="panel-exercicios" class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Exercícios práticos</h2>
+            <p>Pratique com atividades curtas, receba nota de 0 a 10, feedback detalhado e solução comentada.</p>
+          </div>
+          <div class="panel-actions">
+            <button type="button" id="gerar-exercicios" class="btn btn-primary">Gerar exercícios</button>
+          </div>
+        </div>
+        <div id="exercicio-area" class="content-area">
+          <p class="hint">Defina seu perfil acima e clique em <strong>"Gerar exercícios"</strong> para começar a praticar.</p>
+        </div>
+      </section>
+
+      <section id="panel-quiz" class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Quiz interativo</h2>
+            <p>Teste seus conhecimentos com perguntas de múltipla escolha (A–D) e revise seus erros ao final.</p>
+          </div>
+          <div class="panel-actions">
+            <button type="button" id="iniciar-quiz" class="btn btn-primary">Iniciar quiz</button>
+          </div>
+        </div>
+        <div id="quiz-area" class="content-area">
+          <p class="hint">Clique em <strong>"Iniciar quiz"</strong> para avaliar seu aprendizado e ganhar pontos.</p>
+        </div>
+      </section>
+
+      <section id="panel-historico" class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Histórico de estudos</h2>
+            <p>Acompanhe suas atividades recentes salvas neste navegador.</p>
+          </div>
+          <div class="panel-actions">
+            <button type="button" id="limpar-historico" class="btn btn-ghost btn-small">Limpar histórico</button>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <label for="filtro-historico">Filtrar por tipo:</label>
+          <select id="filtro-historico">
+            <option value="todos">Todos</option>
+            <option value="Chat">Chat</option>
+            <option value="Exercícios">Exercícios</option>
+            <option value="Correção">Correções</option>
+            <option value="Quiz">Quiz</option>
+            <option value="Preferências">Preferências</option>
+          </select>
+        </div>
+        <ul id="historico-lista" class="historico"></ul>
+      </section>
+
+      <section id="panel-geral" class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Visão geral</h2>
+            <p>Resumo do seu progresso e atalhos para continuar estudando.</p>
+          </div>
+        </div>
+
+        <div class="overview-hero card">
+          <div class="overview-hero-text">
+            <h3>Bem-vindo ao CodeLab IA</h3>
+            <p class="card-desc">Seu ambiente de estudos personalizado. Use o tutor, pratique com exercícios e avalie seu conhecimento com quizzes.</p>
+          </div>
+          <div class="overview-hero-actions card-actions">
+            <button type="button" class="btn btn-primary" onclick="document.querySelector('[data-tab=chat]').click()">Abrir Tutor</button>
+            <button type="button" class="btn btn-ghost" onclick="document.querySelector('[data-tab=exercicios]').click()">Praticar</button>
+            <button type="button" class="btn btn-ghost" onclick="document.querySelector('[data-tab=quiz]').click()">Fazer quiz</button>
+          </div>
+        </div>
+
+        <div class="stats-grid" aria-label="Estatísticas de estudo">
+          <div class="card stat-card">
+            <span class="stat-label">Atividades registradas</span>
+            <strong id="stat-atividades" class="stat-value">0</strong>
+          </div>
+          <div class="card stat-card">
+            <span class="stat-label">Respostas no quiz</span>
+            <strong id="stat-quiz" class="stat-value">0</strong>
+          </div>
+          <div class="card stat-card">
+            <span class="stat-label">Taxa de acerto</span>
+            <strong id="stat-taxa" class="stat-value">—</strong>
+          </div>
+          <div class="card stat-card">
+            <span class="stat-label">Exercícios corrigidos</span>
+            <strong id="stat-correcoes" class="stat-value">0</strong>
+          </div>
+        </div>
+
+        <div class="card profile-card">
+          <h3>Perfil de estudo atual</h3>
+          <p class="card-desc" id="perfil-resumo">Defina linguagem, nível e tema no topo para personalizar seu estudo.</p>
+        </div>
+      </section>
+
+      <section id="panel-guia" class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Guia rápido</h2>
+            <p>Comece a estudar em poucos passos.</p>
+          </div>
+        </div>
+        <div class="card guide-card">
+          <ol class="guide-list">
+            <li><strong>Configure seu perfil:</strong> escolha a linguagem, o nível e o tema no topo e salve suas preferências.</li>
+            <li><strong>Tire dúvidas no Tutor IA:</strong> converse sobre programação ou qualquer outro assunto.</li>
+            <li><strong>Pratique com exercícios:</strong> gere tarefas curtas, envie suas respostas e receba correção com nota e solução.</li>
+            <li><strong>Faça quizzes:</strong> responda perguntas de múltipla escolha (A–D), acumule pontos e revise os erros.</li>
+            <li><strong>Acompanhe seu progresso:</strong> consulte o histórico e a visão geral para ver sua evolução.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="panel-sobre" class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Sobre a plataforma</h2>
+            <p>Informações sobre o CodeLab IA.</p>
+          </div>
+        </div>
+        <div class="card about-text">
+          <p><strong>CodeLab IA</strong> é uma plataforma de estudos para apoiar o aprendizado de programação com o auxílio de inteligência artificial.</p>
+          <p>Nesta versão de testes, o site funciona de forma estática no navegador, com conteúdos de demonstração para chat, exercícios e quizzes.</p>
+          <p><strong>Privacidade e dados:</strong> suas preferências, pontuação e histórico são armazenados localmente no seu navegador.</p>
+          <p style="margin-bottom:0;">Em versões futuras, a plataforma poderá ser integrada a um serviço de IA para respostas e atividades personalizadas em tempo real.</p>
+        </div>
+      </section>
+
+      <footer class="app-footer">
+        <span>CodeLab IA · Plataforma de estudos</span>
+        <span>Versão de testes · Progresso salvo localmente</span>
+      </footer>
+    </main>
+  </div>
+
+  <button type="button" id="tema-btn" class="theme-toggle" aria-label="Alternar tema escuro" title="Alternar tema claro/escuro">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"></circle>
+      <line x1="12" y1="2" x2="12" y2="4"></line>
+      <line x1="12" y1="20" x2="12" y2="22"></line>
+      <line x1="4.9" y1="4.9" x2="6.3" y2="6.3"></line>
+      <line x1="17.7" y1="17.7" x2="19.1" y2="19.1"></line>
+      <line x1="2" y1="12" x2="4" y2="12"></line>
+      <line x1="20" y1="12" x2="22" y2="12"></line>
+      <line x1="4.9" y1="19.1" x2="6.3" y2="17.7"></line>
+      <line x1="17.7" y1="6.3" x2="19.1" y2="4.9"></line>
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+    </svg>
+  </button>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
